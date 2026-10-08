@@ -1,0 +1,887 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<!-- チェック用：検索エンジンに載らないようにする設定。本番公開時はこの1行を削除 -->
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="株式会社 築大は、宿泊・観光、教育、スポーツ、国際交流をフィールドに、企業・教育機関・行政をつなぐことで新しい価値を生み出す会社です。">
+<link rel="icon" href="images/logo.png">
+<title>築大 TSUKIDAI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&family=Zen+Old+Mincho:wght@400;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
+
+<style>
+:root{
+  --paper:#ffffff;
+  --mist:#f4f3ef;
+  --line:#e2e0d9;
+  --ink:#16181c;
+  --ink-70:#4b4f57;
+  --ink-50:#767a82;
+  --gold:#9d7d18;
+  --gold-bright:#a8871f;
+  --gold-wash:rgba(157,125,24,.10);
+  --shadow:0 1px 2px rgba(20,22,26,.04),0 12px 40px rgba(20,22,26,.06);
+  --maxw:1160px;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#0f1114;
+    --mist:#171a1f;
+    --line:#2a2e35;
+    --ink:#eceae4;
+    --ink-70:#b3b0a8;
+    --ink-50:#8b8880;
+    --gold:#c9a94b;
+    --gold-bright:#d8b95c;
+    --gold-wash:rgba(201,169,75,.12);
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 12px 40px rgba(0,0,0,.35);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0f1114;
+  --mist:#171a1f;
+  --line:#2a2e35;
+  --ink:#eceae4;
+  --ink-70:#b3b0a8;
+  --ink-50:#8b8880;
+  --gold:#c9a94b;
+  --gold-bright:#d8b95c;
+  --gold-wash:rgba(201,169,75,.12);
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 12px 40px rgba(0,0,0,.35);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:"Zen Kaku Gothic New","Hiragino Sans","Noto Sans JP",system-ui,sans-serif;
+  font-size:16px;
+  line-height:2;
+  letter-spacing:.02em;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+a{color:inherit}
+
+/* ---- language switching ---- */
+:root:not([data-lang="en"]) [data-l="en"]{display:none !important}
+:root[data-lang="en"] [data-l="ja"]{display:none !important}
+:root[data-lang="en"] body{line-height:1.8;letter-spacing:.005em}
+
+/* ---- type roles ---- */
+.serif{font-family:"Zen Old Mincho","Yu Mincho","Hiragino Mincho ProN",serif}
+.roman{font-family:"Marcellus","Zen Old Mincho",Georgia,serif;letter-spacing:.14em}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+
+/* ---- header ---- */
+header.site{
+  position:sticky;top:0;z-index:50;
+  background:color-mix(in srgb,var(--paper) 88%,transparent);
+  backdrop-filter:saturate(140%) blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.bar{max-width:var(--maxw);margin:0 auto;padding:14px 28px;display:flex;align-items:center;gap:24px}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;margin-right:auto}
+.brand img{height:34px;width:auto}
+.brand .nm{font-family:"Marcellus",serif;font-size:17px;letter-spacing:.22em;color:var(--ink)}
+nav.main{display:flex;gap:26px}
+nav.main a{
+  font-family:"Marcellus",serif;font-size:12px;letter-spacing:.18em;
+  text-decoration:none;color:var(--ink-70);padding:4px 0;border-bottom:1px solid transparent;
+  transition:color .25s,border-color .25s;
+}
+nav.main a:hover,nav.main a:focus-visible{color:var(--gold);border-color:var(--gold)}
+.langsw{display:flex;border:1px solid var(--line);border-radius:2px;overflow:hidden;flex:none}
+.langsw button{
+  font-family:"Marcellus",serif;font-size:11px;letter-spacing:.14em;
+  background:transparent;color:var(--ink-50);border:0;padding:7px 11px;cursor:pointer;
+  transition:background .2s,color .2s;
+}
+.langsw button[aria-pressed="true"]{background:var(--gold);color:#fff}
+:root[data-theme="dark"] .langsw button[aria-pressed="true"]{color:#0f1114}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .langsw button[aria-pressed="true"]{color:#0f1114}}
+@media(max-width:860px){nav.main{display:none}}
+
+/* ---- the spine: one unbroken line, the site's structural metaphor ---- */
+main{position:relative}
+main::before{
+  content:"";position:absolute;left:calc(50% - var(--maxw)/2 + 28px);top:0;bottom:0;width:1px;
+  background:linear-gradient(180deg,transparent,var(--line) 4%,var(--line) 96%,transparent);
+  pointer-events:none;
+}
+@media(max-width:1080px){main::before{display:none}}
+
+/* ---- section scaffolding ---- */
+section{padding:104px 0;border-top:1px solid var(--line)}
+section:first-of-type{border-top:0}
+.eyebrow{
+  font-family:"Marcellus",serif;font-size:11px;letter-spacing:.3em;color:var(--gold);
+  display:flex;align-items:center;gap:12px;margin-bottom:34px;
+}
+.eyebrow::before{content:"";width:7px;height:7px;flex:none;transform:rotate(45deg);border:1px solid var(--gold)}
+.grid{display:grid;grid-template-columns:230px 1fr;gap:12px 56px;align-items:start}
+@media(max-width:900px){.grid{grid-template-columns:1fr;gap:22px}}
+h2.sec{
+  font-family:"Zen Old Mincho",serif;font-weight:600;font-size:clamp(22px,2.4vw,28px);
+  letter-spacing:.08em;margin:0;line-height:1.6;text-wrap:balance;
+}
+:root[data-lang="en"] h2.sec{font-family:"Marcellus",serif;font-weight:400;letter-spacing:.06em}
+.lede{
+  font-family:"Zen Old Mincho",serif;font-size:clamp(19px,2vw,23px);line-height:2.1;
+  letter-spacing:.05em;margin:0 0 30px;max-width:34em;text-wrap:balance;
+}
+:root[data-lang="en"] .lede{font-family:"Marcellus",serif;letter-spacing:.02em;line-height:1.7}
+p{margin:0 0 1.3em;max-width:40em;color:var(--ink-70)}
+p.tight{margin-bottom:.35em}
+p:last-child{margin-bottom:0}
+strong{font-weight:700;color:var(--ink)}
+
+/* ---- hero ---- */
+.hero{padding:clamp(70px,10vw,132px) 0 96px;border-top:0}
+.hero .wrap{display:grid;grid-template-columns:auto 1fr;gap:clamp(28px,5vw,72px);align-items:center}
+@media(max-width:820px){.hero .wrap{grid-template-columns:1fr;gap:34px}}
+.crest{width:clamp(92px,11vw,142px);animation:rise 1s cubic-bezier(.2,.7,.2,1) both}
+.hero h1{
+  font-family:"Zen Old Mincho",serif;font-weight:600;
+  font-size:clamp(30px,5.2vw,58px);line-height:1.45;letter-spacing:.06em;
+  margin:0 0 30px;text-wrap:balance;
+}
+:root[data-lang="en"] .hero h1{font-family:"Marcellus",serif;font-weight:400;line-height:1.25;letter-spacing:.01em}
+.hero h1 em{font-style:normal;color:var(--gold)}
+.threads{list-style:none;padding:0;margin:0 0 30px}
+.threads li{
+  font-family:"Zen Old Mincho",serif;font-size:clamp(16px,1.7vw,20px);letter-spacing:.09em;
+  padding-left:30px;position:relative;line-height:2.1;
+  animation:slide .8s cubic-bezier(.2,.7,.2,1) both;
+}
+:root[data-lang="en"] .threads li{font-family:"Marcellus",serif;letter-spacing:.04em}
+.threads li::before{
+  content:"";position:absolute;left:0;top:1.05em;width:18px;height:1px;background:var(--gold);
+  transform-origin:left;animation:draw .7s cubic-bezier(.2,.7,.2,1) both;
+}
+.threads li:nth-child(1),.threads li:nth-child(1)::before{animation-delay:.25s}
+.threads li:nth-child(2),.threads li:nth-child(2)::before{animation-delay:.4s}
+.threads li:nth-child(3),.threads li:nth-child(3)::before{animation-delay:.55s}
+.hero p{max-width:36em}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes slide{from{opacity:0;transform:translateX(-10px)}to{opacity:1;transform:none}}
+@keyframes draw{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@media(prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important}}
+
+/* ---- philosophy ---- */
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--line);border:1px solid var(--line)}
+@media(max-width:820px){.three{grid-template-columns:1fr}}
+.three>div{background:var(--paper);padding:34px 30px}
+.three h3{
+  font-family:"Zen Old Mincho",serif;font-size:19px;letter-spacing:.1em;margin:0 0 6px;font-weight:600;
+}
+:root[data-lang="en"] .three h3{font-family:"Marcellus",serif;font-weight:400}
+.three .lat{font-family:"Marcellus",serif;font-size:10px;letter-spacing:.26em;color:var(--gold);display:block;margin-bottom:16px}
+.three p{font-size:14.5px;line-height:1.95}
+
+/* ---- venn ---- */
+.venn{display:block;width:100%;max-width:440px;margin:8px auto 40px;height:auto}
+.venn circle{fill:var(--gold-wash);stroke:var(--gold);stroke-width:1}
+.venn .kan{font-family:"Zen Old Mincho",serif;font-size:19px;fill:var(--ink);letter-spacing:.05em}
+.venn .lat{font-family:"Marcellus",serif;font-size:8.5px;fill:var(--ink-50);letter-spacing:.18em}
+.venn .core{font-family:"Zen Old Mincho",serif;font-size:15px;fill:var(--gold);letter-spacing:.05em}
+.sanpo{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin:0 0 40px}
+@media(max-width:820px){.sanpo{grid-template-columns:1fr;gap:18px}}
+.sanpo h4{font-family:"Marcellus",serif;font-size:12px;letter-spacing:.2em;color:var(--gold);margin:0 0 8px;font-weight:400}
+.sanpo p{font-size:14.5px;line-height:1.9;margin:0}
+.flow{
+  display:flex;flex-wrap:wrap;align-items:center;gap:16px;
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:26px 0;margin-top:38px;
+}
+.flow span{font-family:"Marcellus",serif;font-size:clamp(13px,1.6vw,17px);letter-spacing:.2em}
+.flow i{color:var(--gold);font-style:normal}
+.flow .jp{font-family:"Zen Old Mincho",serif;letter-spacing:.12em;font-size:14px;color:var(--ink-50);width:100%}
+
+/* ---- business ---- */
+.biz{display:grid;gap:0}
+.biz article{display:grid;grid-template-columns:96px 1fr;gap:34px;padding:44px 0;border-top:1px solid var(--line)}
+.biz article:first-child{border-top:0;padding-top:8px}
+@media(max-width:760px){.biz article{grid-template-columns:1fr;gap:14px}}
+.num{font-family:"Marcellus",serif;font-size:34px;color:var(--gold);line-height:1;letter-spacing:.02em}
+.biz h3{font-family:"Zen Old Mincho",serif;font-size:clamp(20px,2.2vw,25px);letter-spacing:.09em;margin:0 0 4px;font-weight:600}
+:root[data-lang="en"] .biz h3{font-family:"Marcellus",serif;font-weight:400}
+.biz .lat{font-family:"Marcellus",serif;font-size:10.5px;letter-spacing:.28em;color:var(--gold);display:block;margin-bottom:18px}
+.pull{
+  font-family:"Zen Old Mincho",serif;font-size:clamp(17px,2vw,21px);letter-spacing:.07em;
+  line-height:1.9;color:var(--ink);border-left:2px solid var(--gold);padding-left:20px;margin:26px 0 0;max-width:32em;
+}
+:root[data-lang="en"] .pull{font-family:"Marcellus",serif;line-height:1.6}
+.property{
+  margin-top:24px;border:1px solid var(--line);padding:20px 22px;display:flex;
+  flex-wrap:wrap;align-items:baseline;gap:6px 16px;background:var(--mist);
+}
+.property .pn{font-family:"Marcellus",serif;font-size:15px;letter-spacing:.16em}
+.property .pl{font-size:12px;letter-spacing:.14em;color:var(--ink-50);font-family:"Marcellus",serif}
+
+/* ---- property link ---- */
+a.property{text-decoration:none;color:inherit;transition:border-color .3s,background .3s}
+a.property:hover,a.property:focus-visible{border-color:var(--gold);background:var(--paper)}
+a.property .go{margin-left:auto;font-family:"Marcellus",serif;font-size:11px;letter-spacing:.16em;color:var(--gold);white-space:nowrap}
+
+/* ---- bio ---- */
+.bio{margin-top:44px;padding-top:32px;border-top:1px solid var(--line)}
+.bio .lab{font-family:"Marcellus",serif;font-size:10px;letter-spacing:.26em;color:var(--gold);display:block;margin-bottom:14px}
+.bio h3{font-family:"Zen Old Mincho",serif;font-size:21px;letter-spacing:.1em;margin:0 0 3px;font-weight:600}
+:root[data-lang="en"] .bio h3{font-family:"Marcellus",serif;font-weight:400}
+.bio .role2{font-size:12.5px;letter-spacing:.1em;color:var(--ink-50);display:block;margin-bottom:22px}
+.bio p{font-size:14.5px;line-height:2}
+.bio em{font-style:italic}
+.career{margin:28px 0 0;padding:0;list-style:none;border-top:1px solid var(--line)}
+.career li{
+  padding:11px 0;border-bottom:1px solid var(--line);font-size:13.5px;line-height:1.8;
+  color:var(--ink-70);display:flex;gap:13px;align-items:baseline;max-width:none;
+}
+.career li::before{content:"";width:5px;height:5px;flex:none;transform:rotate(45deg);border:1px solid var(--gold);position:relative;top:-1px}
+
+/* ---- gallery ---- */
+.gallery{margin-top:28px;display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--line);border:1px solid var(--line)}
+@media(max-width:640px){.gallery{grid-template-columns:repeat(2,1fr)}}
+.gallery button{
+  padding:0;border:0;margin:0;display:block;position:relative;overflow:hidden;cursor:zoom-in;
+  background:var(--mist);aspect-ratio:4/3;
+}
+.gallery button.feature{grid-column:1/-1;aspect-ratio:2.4/1}
+@media(max-width:640px){.gallery button.feature{aspect-ratio:16/10}}
+.gallery img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.2,.7,.2,1),filter .5s}
+.gallery button:hover img,.gallery button:focus-visible img{transform:scale(1.04)}
+.gallery figcaption{
+  position:absolute;left:0;right:0;bottom:0;padding:22px 14px 10px;
+  font-family:"Marcellus",serif;font-size:10.5px;letter-spacing:.18em;color:#fff;text-align:left;
+  background:linear-gradient(180deg,transparent,rgba(10,12,15,.72));
+  opacity:0;transition:opacity .4s;
+}
+.gallery button:hover figcaption,.gallery button:focus-visible figcaption{opacity:1}
+.property .pa{flex-basis:100%;order:1;font-size:12.5px;letter-spacing:.06em;color:var(--ink-70);line-height:1.6}
+.property .nw{white-space:nowrap}
+.property .pr{order:2;margin-top:-4px;font-family:"Marcellus","Zen Kaku Gothic New",serif;letter-spacing:.1em}
+/* ---- room galleries ---- */
+.room{margin-top:28px}
+.room-h{display:flex;align-items:baseline;gap:12px;margin-bottom:12px}
+.room-h .fl{font-family:"Marcellus",serif;font-size:11px;letter-spacing:.2em;color:var(--gold)}
+.room-h .rn{font-family:"Marcellus",serif;font-size:15px;letter-spacing:.22em;color:var(--ink)}
+.room .gallery{margin-top:0}
+.gallery.r2{grid-template-columns:repeat(2,1fr)}
+.gallery.r3{grid-template-columns:repeat(3,1fr)}
+.gallery.r2 button,.gallery.r3 button{aspect-ratio:3/2}
+@media(max-width:640px){.gallery.r3{grid-template-columns:repeat(2,1fr)}.gallery.r3 button:first-child{grid-column:1/-1}}
+.credit{margin-top:10px;font-size:11.5px;letter-spacing:.08em;color:var(--ink-50)}
+
+/* ---- lightbox ---- */
+#lb{
+  position:fixed;inset:0;z-index:100;background:rgba(8,9,11,.94);
+  display:flex;align-items:center;justify-content:center;padding:5vmin;border:0;
+}
+#lb[hidden]{display:none !important}
+#lb img{max-width:100%;max-height:90vh;width:auto;height:auto;box-shadow:0 30px 90px rgba(0,0,0,.6)}
+#lb .close{
+  position:absolute;top:18px;right:22px;background:transparent;border:1px solid rgba(255,255,255,.35);
+  color:#fff;font-family:"Marcellus",serif;font-size:12px;letter-spacing:.16em;padding:9px 16px;cursor:pointer;
+}
+#lb .close:hover{background:rgba(255,255,255,.14)}
+
+/* ---- projects ---- */
+.pairs{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--line);border:1px solid var(--line)}
+@media(max-width:760px){.pairs{grid-template-columns:1fr}}
+.pairs>div{background:var(--paper);padding:32px 30px;transition:background .3s}
+.pairs>div:hover{background:var(--mist)}
+.pairs .x{font-family:"Marcellus",serif;font-size:12.5px;letter-spacing:.2em;color:var(--gold);display:block;margin-bottom:12px}
+.pairs h3{font-family:"Zen Old Mincho",serif;font-size:18px;letter-spacing:.1em;margin:0 0 10px;font-weight:600}
+:root[data-lang="en"] .pairs h3{display:none}
+.pairs p{font-size:14.5px;line-height:1.9;margin:0}
+
+/* ---- vision ---- */
+.vision{background:var(--mist)}
+.stack{list-style:none;padding:0;margin:26px 0 0}
+.stack li{
+  font-family:"Zen Old Mincho",serif;font-size:clamp(17px,2vw,21px);letter-spacing:.09em;line-height:2.1;
+  padding-left:26px;position:relative;
+}
+:root[data-lang="en"] .stack li{font-family:"Marcellus",serif;letter-spacing:.04em}
+.stack li::before{content:"";position:absolute;left:0;top:1.05em;width:14px;height:1px;background:var(--gold)}
+
+/* ---- message ---- */
+.msg{display:grid;grid-template-columns:280px 1fr;gap:52px;align-items:start}
+@media(max-width:820px){.msg{grid-template-columns:1fr;gap:26px}.msg figure{max-width:260px}}
+.msg figure{margin:0}
+.msg img{border:1px solid var(--line);filter:grayscale(1) contrast(1.03);transition:filter .6s}
+.msg img:hover{filter:grayscale(0)}
+.msg figcaption{margin-top:14px;font-size:13px;color:var(--ink-50);letter-spacing:.08em;line-height:1.8}
+.sig{margin-top:34px;padding-top:22px;border-top:1px solid var(--line);font-size:14px;letter-spacing:.1em;color:var(--ink);line-height:2}
+.sig .role{color:var(--ink-50);font-size:12.5px}
+
+/* ---- company ---- */
+dl.company{margin:0;display:grid;grid-template-columns:190px 1fr;border-top:1px solid var(--line)}
+@media(max-width:700px){dl.company{grid-template-columns:1fr;gap:0}}
+dl.company dt{
+  font-family:"Marcellus",serif;font-size:11.5px;letter-spacing:.2em;color:var(--gold);
+  padding:20px 0 6px;border-bottom:0;
+}
+dl.company dd{margin:0;padding:20px 0;border-bottom:1px solid var(--line);color:var(--ink-70)}
+@media(max-width:700px){dl.company dt{padding-bottom:0}dl.company dd{padding-top:6px}}
+dl.company ul{margin:0;padding-left:1.1em}
+dl.company li{margin-bottom:.2em}
+
+/* ---- contact ---- */
+.contact{background:var(--ink);color:var(--paper);border-top:0}
+.contact .eyebrow{color:var(--gold-bright)}
+.contact .eyebrow::before{border-color:var(--gold-bright)}
+.contact h2.sec,.contact .lede{color:var(--paper)}
+.contact p{color:color-mix(in srgb,var(--paper) 68%,transparent)}
+.cta{
+  display:inline-flex;align-items:center;gap:14px;margin-top:14px;
+  font-family:"Marcellus",serif;font-size:14px;letter-spacing:.2em;text-decoration:none;
+  color:var(--paper);border:1px solid color-mix(in srgb,var(--paper) 40%,transparent);
+  padding:17px 30px;transition:background .3s,border-color .3s,color .3s;
+}
+.cta:hover,.cta:focus-visible{background:var(--gold-bright);border-color:var(--gold-bright);color:#141414}
+.cta .ar{transition:transform .3s}
+.cta:hover .ar{transform:translateX(5px)}
+.mailto{display:block;margin-top:22px;font-size:14px;letter-spacing:.06em;color:var(--gold-bright);text-decoration:none;border-bottom:1px solid transparent;width:fit-content}
+.mailto:hover{border-color:var(--gold-bright)}
+
+footer.site{background:var(--ink);color:color-mix(in srgb,var(--paper) 55%,transparent);padding:34px 0;border-top:1px solid color-mix(in srgb,var(--paper) 12%,transparent)}
+footer.site .wrap{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between}
+footer.site .fm{display:flex;align-items:center;gap:11px}
+footer.site img{height:30px;width:auto}
+footer.site .nm{font-family:"Marcellus",serif;letter-spacing:.22em;font-size:14px;color:var(--paper)}
+footer.site small{font-family:"Marcellus",serif;letter-spacing:.12em;font-size:11px}
+
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+</style>
+</head>
+<body>
+<header class="site">
+  <div class="bar">
+    <a class="brand" href="#top">
+      <img src="images/logo.png" alt="築大 TSUKIDAI">
+      <span class="nm">TSUKIDAI</span>
+    </a>
+    <nav class="main">
+      <a href="#about">ABOUT</a>
+      <a href="#collaboration">COLLABORATION</a>
+      <a href="#business">BUSINESS</a>
+      <a href="#vision">VISION</a>
+      <a href="#company">COMPANY</a>
+      <a href="#contact">CONTACT</a>
+    </nav>
+    <div class="langsw" role="group" aria-label="Language">
+      <button type="button" id="btn-ja" aria-pressed="true">JA</button>
+      <button type="button" id="btn-en" aria-pressed="false">EN</button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <img class="crest" src="images/logo.png" alt="">
+      <div>
+        <h1>
+          <span data-l="ja">伝統を受け継ぎ、<br><em>未来を築く。</em></span>
+          <span data-l="en">Inheriting tradition,<br><em>building what comes next.</em></span>
+        </h1>
+        <ul class="threads">
+          <li><span data-l="ja">人と人をつなぐ。</span><span data-l="en">Connecting people to people.</span></li>
+          <li><span data-l="ja">産・学・官をつなぐ。</span><span data-l="en">Connecting industry, academia and government.</span></li>
+          <li><span data-l="ja">日本と世界をつなぐ。</span><span data-l="en">Connecting Japan and the world.</span></li>
+        </ul>
+        <p data-l="ja">株式会社 築大は、宿泊・観光、教育、スポーツ、国際交流をフィールドに、企業・教育機関・行政など、異なる領域をつなぐことで、新しい価値を生み出すことを目指す会社です。</p>
+        <p data-l="en">Tsukidai Co., Ltd. works across hospitality and tourism, education, sport and international exchange — creating new value by connecting companies, educational institutions and government bodies that would otherwise never meet.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="wrap">
+      <div class="eyebrow">ABOUT</div>
+      <div class="grid">
+        <h2 class="sec"><span data-l="ja">築大とは</span><span data-l="en">Who We Are</span></h2>
+        <div>
+          <p class="lede"><span data-l="ja">「築く」のは、建物だけではない。</span><span data-l="en">What we build is not only buildings.</span></p>
+          <p data-l="ja">人と人との信頼を築く。<br>地域と世界とのつながりを築く。<br>次の世代が活躍できる環境を築く。</p>
+          <p data-l="en">We build trust between people.<br>We build connections between local communities and the world.<br>We build environments where the next generation can thrive.</p>
+          <p data-l="ja">社会には、企業、学校・大学、行政、地域など、それぞれに優れた知識、人材、技術、ネットワークがあります。しかし、それらが領域を越えて出会わなければ、新しい価値は生まれません。</p>
+          <p data-l="en">Companies, schools and universities, government and local communities each hold outstanding knowledge, talent, technology and networks. But unless they meet across those boundaries, nothing new is created.</p>
+          <p data-l="ja">株式会社 築大は、それぞれの力を「つなぐ」ことから、新しいプロジェクトを生み出し、社会へとつなげていくことを目指します。</p>
+          <p data-l="en">Tsukidai starts by connecting those strengths — turning them into projects, and turning projects into something society can use.</p>
+          <p class="pull"><span data-l="ja">伝統を大切にしながら、革新を恐れない。<br>受け継ぐべきものを次の世代へ。<br>変えるべきものには、新しい発想を。</span><span data-l="en">We honour tradition without fearing change.<br>What deserves to be inherited, we pass on.<br>What deserves to change, we rethink.</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PHILOSOPHY -->
+  <section id="philosophy">
+    <div class="wrap">
+      <div class="eyebrow">PHILOSOPHY</div>
+      <div class="grid">
+        <h2 class="sec"><span data-l="ja">私たちが大切にすること</span><span data-l="en">What We Value</span></h2>
+        <div class="three">
+          <div>
+            <span class="lat">TRADITION × INNOVATION</span>
+            <h3><span data-l="ja">伝統 × 革新</span><span data-l="en">Tradition × Innovation</span></h3>
+            <p data-l="ja">歴史や文化、人と人との信頼を大切にしながら、新しい技術や発想を取り入れ、次の時代へつなげます。</p>
+            <p data-l="en">We value history, culture and human trust — while bringing in new technology and new thinking, and carrying both into the next era.</p>
+          </div>
+          <div>
+            <span class="lat">CO-CREATION</span>
+            <h3><span data-l="ja">共創</span><span data-l="en">Co-creation</span></h3>
+            <p data-l="ja">一社だけですべてを実現するのではなく、企業、教育機関、行政、地域、そして世界の人々と力を合わせます。</p>
+            <p data-l="en">No single company can do all of this alone. We work with companies, educational institutions, government, communities and people around the world.</p>
+          </div>
+          <div>
+            <span class="lat">NEXT GENERATION</span>
+            <h3><span data-l="ja">次世代</span><span data-l="en">The Next Generation</span></h3>
+            <p data-l="ja">私たちの事業の先にいるのは、次の社会をつくる人たちです。教育、スポーツ、国際交流を通じて、若い世代が社会や世界と出会う機会をつくります。</p>
+            <p data-l="en">At the far end of everything we do are the people who will build the next society. Through education, sport and international exchange, we create chances for young people to meet the world.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COLLABORATION -->
+  <section id="collaboration">
+    <div class="wrap">
+      <div class="eyebrow">COLLABORATION</div>
+      <div class="grid">
+        <h2 class="sec"><span data-l="ja">産学官連携</span><span data-l="en">Industry–Academia–Government</span></h2>
+        <div>
+          <p class="lede"><span data-l="ja">異なる力をつなぎ、新しい価値を社会へ。</span><span data-l="en">Connecting different strengths, and delivering new value to society.</span></p>
+
+          <svg class="venn" viewBox="0 0 400 330" role="img" aria-labelledby="venn-t">
+            <title id="venn-t">産・学・官の重なりに立つ築大</title>
+            <circle cx="140" cy="130" r="98"></circle>
+            <circle cx="260" cy="130" r="98"></circle>
+            <circle cx="200" cy="212" r="98"></circle>
+            <text class="kan" x="112" y="72" text-anchor="middle">産</text>
+            <text class="lat" x="112" y="88" text-anchor="middle">INDUSTRY</text>
+            <text class="kan" x="288" y="72" text-anchor="middle">学</text>
+            <text class="lat" x="288" y="88" text-anchor="middle">ACADEMIA</text>
+            <text class="kan" x="200" y="288" text-anchor="middle">官</text>
+            <text class="lat" x="200" y="304" text-anchor="middle">GOVERNMENT</text>
+            <text class="core" x="200" y="163" text-anchor="middle">築大</text>
+          </svg>
+
+          <div class="sanpo">
+            <div>
+              <h4>産 ｜ INDUSTRY</h4>
+              <p data-l="ja">企業・産業界が持つ技術、事業、人材、資金、ネットワーク。</p>
+              <p data-l="en">Technology, business, talent, capital and networks held by industry.</p>
+            </div>
+            <div>
+              <h4>学 ｜ ACADEMIA</h4>
+              <p data-l="ja">学校・大学などが持つ教育、研究、知識、人材。</p>
+              <p data-l="en">Education, research, knowledge and talent held by schools and universities.</p>
+            </div>
+            <div>
+              <h4>官 ｜ GOVERNMENT</h4>
+              <p data-l="ja">国・自治体などが持つ政策、公共性、地域とのネットワーク。</p>
+              <p data-l="en">Policy, public purpose and local networks held by national and local government.</p>
+            </div>
+          </div>
+
+          <p data-l="ja">それぞれが持つ力を結びつけることで、一つの組織だけでは実現できない新しい取り組みが可能になります。</p>
+          <p data-l="en">Linking these strengths makes possible what no single organisation could achieve on its own.</p>
+          <p data-l="ja">築大は、自らがすべてを持つのではなく、必要な人・組織・アイデアをつなぎ、プロジェクトを企画し、実現へ向けて動かす<strong>「ハブ」</strong>となることを目指します。</p>
+          <p data-l="en">Tsukidai does not aim to own everything itself. We aim to be the <strong>hub</strong> — connecting the people, organisations and ideas a project needs, designing it, and driving it to completion.</p>
+
+          <div class="flow">
+            <span>CONNECT</span><i>—</i><span>CREATE</span><i>—</i><span>IMPLEMENT</span>
+            <span class="jp" data-l="ja">つなぐ。生み出す。社会へ届ける。</span>
+            <span class="jp" data-l="en">Connect. Create. Deliver to society.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BUSINESS -->
+  <section id="business">
+    <div class="wrap">
+      <div class="eyebrow">BUSINESS</div>
+      <div class="grid">
+        <h2 class="sec"><span data-l="ja">事業領域</span><span data-l="en">What We Do</span></h2>
+        <div>
+          <p data-l="ja">産学官連携という考え方を軸として、4つの領域で事業を展開します。</p>
+          <p data-l="en">Built around industry–academia–government collaboration, our work spans four fields.</p>
+
+          <div class="biz">
+            <article>
+              <div class="num">01</div>
+              <div>
+                <span class="lat">HOSPITALITY</span>
+                <h3><span data-l="ja">宿泊・観光</span><span data-l="en">Hospitality &amp; Tourism</span></h3>
+                <p data-l="ja">宿泊は、単に「泊まる」ためのものではありません。人と地域、人と文化、日本と世界が出会う場所です。</p>
+                <p data-l="en">Accommodation is not merely a place to sleep. It is where people meet a place, a culture — where Japan meets the world.</p>
+                <p data-l="ja">宿泊施設の企画・運営を通じ、日本を訪れる人々と地域をつなぎ、新しい観光・交流のあり方を追求します。</p>
+                <p data-l="en">Through planning and operating accommodation, we connect visitors with local communities and pursue a new form of tourism and exchange.</p>
+                <a class="property" href="https://www.airbnb.jp/properties/1715242144826848788?anchor_room_id=43747927" target="_blank" rel="noopener noreferrer">
+                  <span class="pn">HOTEL CREARE RYOGOKU</span>
+                  <span class="pl">TOKYO / RYOGOKU</span>
+                  <span class="go">VIEW <span aria-hidden="true">↗</span></span>
+                  <span class="pa"><span data-l="ja">東京都墨田区緑2-15-12</span><span data-l="en">2-15-12 Midori, Sumida-ku, Tokyo</span></span>
+                  <span class="pa pr"><span data-l="ja">全3室　<span class="nw">2F SAKURA</span> ／ <span class="nw">3F UGUISU</span> ／ <span class="nw">4F FUJI</span></span><span data-l="en">3 rooms — <span class="nw">2F SAKURA</span> / <span class="nw">3F UGUISU</span> / <span class="nw">4F FUJI</span></span></span>
+                </a>
+
+                <div class="room">
+                  <div class="room-h"><span class="fl">2F</span><span class="rn">SAKURA</span></div>
+                  <div class="gallery r2">
+                    <button type="button">
+                      <img src="images/sakura-01.jpg" alt="向かい合う二つの寝台と深紅の絨毯" loading="lazy">
+                      <figcaption>TWIN ALCOVES</figcaption>
+                    </button>
+                    <button type="button">
+                      <img src="images/sakura-02.jpg" alt="夜の窓辺と階段付きの木造寝台" loading="lazy">
+                      <figcaption>AFTER DARK</figcaption>
+                    </button>
+                    <button type="button">
+                      <img src="images/sakura-03.jpg" alt="アンティークのチェストとランプ" loading="lazy">
+                      <figcaption>THE CHEST</figcaption>
+                    </button>
+                    <button type="button">
+                      <img src="images/sakura-04.jpg" alt="ダマスク張りのスツールとコンクリート壁" loading="lazy" style="object-position:50% 62%">
+                      <figcaption>DAMASK STOOL</figcaption>
+                    </button>
+                  </div>
+                </div>
+                <div class="room">
+                  <div class="room-h"><span class="fl">3F</span><span class="rn">UGUISU</span></div>
+                  <div class="gallery r2">
+                    <button type="button">
+                      <img src="images/uguisu-01.jpg" alt="向かい合う二つの寝台と緑の絨毯" loading="lazy">
+                      <figcaption>TWIN ALCOVES</figcaption>
+                    </button>
+                    <button type="button">
+                      <img src="images/uguisu-02.jpg" alt="窓辺のターコイズのソファ" loading="lazy">
+                      <figcaption>WINDOW SOFA</figcaption>
+                    </button>
+                    <button type="button">
+                      <img src="images/uguisu-03.jpg" alt="コンソールテーブルとガラスのランプ" loading="lazy">
+                      <figcaption>THE CONSOLE</figcaption>
+                    </button>
+                    <button type="button">
+                      <img src="images/uguisu-04.jpg" alt="金のダマスク張りのスツールとコンクリート壁" loading="lazy" style="object-position:50% 68%">
+                      <figcaption>GILT STOOL</figcaption>
+                    </button>
+                  </div>
+                </div>
+                <div class="room">
+                  <div class="room-h"><span class="fl">4F</span><span class="rn">FUJI</span></div>
+                  <div class="gallery r2">
+                    <button type="button">
+                      <img src="images/fuji-01.jpg" alt="向かい合う二つの寝台と青い絨毯" loading="lazy">
+                      <figcaption>TWIN ALCOVES</figcaption>
+                    </button>
+                    <button type="button">
+                      <img src="images/fuji-02.jpg" alt="窓辺の青いソファと寝台" loading="lazy">
+                      <figcaption>WINDOW SOFA</figcaption>
+                    </button>
+                    <button type="button">
+                      <img src="images/fuji-03.jpg" alt="コンソールテーブルとフリルシェードのランプ" loading="lazy">
+                      <figcaption>THE CONSOLE</figcaption>
+                    </button>
+                    <button type="button">
+                      <img src="images/fuji-04.jpg" alt="青いペイズリー張りのスツール" loading="lazy" style="object-position:50% 62%">
+                      <figcaption>PAISLEY STOOL</figcaption>
+                    </button>
+                  </div>
+                </div>
+                <p class="credit"><span data-l="ja">木の寝台とアンティークの家具を、コンクリートの躯体が受け止める。伝統と現代を同じ空間に置く試みです。</span><span data-l="en">Timber alcove beds and antique furniture, held within a shell of bare concrete — tradition and the present in one room.</span></p>
+              </div>
+            </article>
+
+            <article>
+              <div class="num">02</div>
+              <div>
+                <span class="lat">EDUCATION</span>
+                <h3><span data-l="ja">教育・人材育成</span><span data-l="en">Education &amp; Talent Development</span></h3>
+                <p data-l="ja">学校の中だけでは得られない学びを、社会との出会いから。</p>
+                <p data-l="en">Learning that school alone cannot provide — created by meeting society.</p>
+                <p data-l="ja">企業、大学、専門家などと若い世代をつなぎ、実社会に触れ、自ら考え、行動する機会を創出します。教育と社会をつなぐことで、次の時代を担う人材の育成に取り組みます。</p>
+                <p data-l="en">We connect young people with companies, universities and specialists, creating opportunities to encounter the real world, think for themselves and act. By connecting education and society, we help develop the people who will lead the next era.</p>
+              </div>
+            </article>
+
+            <article>
+              <div class="num">03</div>
+              <div>
+                <span class="lat">SPORTS &amp; GLOBAL</span>
+                <h3><span data-l="ja">スポーツ・国際交流</span><span data-l="en">Sport &amp; International Exchange</span></h3>
+                <p class="lede" style="margin-bottom:22px"><span class="roman">SPORTS CONNECT THE WORLD.</span></p>
+                <p data-l="ja">スポーツには、言語、国籍、文化、立場の違いを越えて、人と人をつなぐ力があります。</p>
+                <p data-l="en">Sport has the power to connect people across language, nationality, culture and position.</p>
+                <p data-l="ja">国内外の学校、大学、アスリート、企業などとの交流を通じ、競技レベルだけにとらわれない新しいスポーツ交流の形をつくります。スポーツから相互理解を生み、世界との距離を縮めていく。</p>
+                <p data-l="en">Working with schools, universities, athletes and companies in Japan and abroad, we build a new form of sporting exchange that is not measured by competitive level alone — generating mutual understanding and shortening the distance to the wider world.</p>
+                <p data-l="ja">私たちは、スポーツを<strong>人と世界をつなぐ共通言語</strong>の一つだと考えています。</p>
+                <p data-l="en">We see sport as one of the <strong>common languages</strong> that connect people and the world.</p>
+                <p class="pull"><span data-l="ja">最終目標は、スポーツで戦争を無くしていくこと。</span><span data-l="en">Our ultimate goal: to use sport to help end war.</span></p>
+              </div>
+            </article>
+
+            <article>
+              <div class="num">04</div>
+              <div>
+                <span class="lat">PROJECT DESIGN</span>
+                <h3><span data-l="ja">共創プロジェクト</span><span data-l="en">Co-creation Projects</span></h3>
+                <p data-l="ja">企業、学校、大学、行政、地域など、それぞれの課題と強みを組み合わせ、新しいプロジェクトを企画します。</p>
+                <p data-l="en">We design new projects by combining the challenges and strengths of companies, schools, universities, government and communities.</p>
+                <p data-l="ja">築大が目指すのは、「紹介して終わる」ネットワークではありません。出会いをつくり、構想を描き、関係者をつなぎ、実現に向けて動かす。人と人の間に立ち、新しい価値が生まれるところまで伴走する。それが築大の役割です。</p>
+                <p data-l="en">What we aim for is not a network that ends at the introduction. We create the meeting, draw the concept, connect the parties and drive it toward reality — standing between people and staying with the work until new value actually exists. That is our role.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="wrap">
+      <div class="eyebrow">PROJECTS</div>
+      <div class="grid">
+        <h2 class="sec"><span data-l="ja">私たちが目指す共創</span><span data-l="en">The Co-creation We Pursue</span></h2>
+        <div class="pairs">
+          <div>
+            <span class="x">EDUCATION × BUSINESS</span>
+            <h3>教育 × 企業</h3>
+            <p data-l="ja">若い世代と社会をつなぎ、学校では得られない学びと経験を生み出す。</p>
+            <p data-l="en">Connecting young people with society to create learning and experience school cannot offer.</p>
+          </div>
+          <div>
+            <span class="x">SPORTS × GLOBAL</span>
+            <h3>スポーツ × 世界</h3>
+            <p data-l="ja">スポーツを通じて国や文化を越えた交流を生み出す。</p>
+            <p data-l="en">Generating exchange across countries and cultures through sport.</p>
+          </div>
+          <div>
+            <span class="x">UNIVERSITY × INDUSTRY</span>
+            <h3>大学 × 産業</h3>
+            <p data-l="ja">大学の研究・教育・スポーツと企業の事業力をつなぎ、新しい価値の社会実装を目指す。</p>
+            <p data-l="en">Linking university research, education and sport with corporate capability to implement new value in society.</p>
+          </div>
+          <div>
+            <span class="x">HOSPITALITY × COMMUNITY</span>
+            <h3>宿泊 × 地域</h3>
+            <p data-l="ja">宿泊を入口として、地域文化、観光、人々の営みを世界へつなぐ。</p>
+            <p data-l="en">Using accommodation as the entry point to connect local culture, tourism and daily life with the world.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VISION -->
+  <section id="vision" class="vision">
+    <div class="wrap">
+      <div class="eyebrow">VISION</div>
+      <div class="grid">
+        <h2 class="sec"><span data-l="ja">築大が目指す未来</span><span data-l="en">The Future We Are Building</span></h2>
+        <div>
+          <p class="lede"><span data-l="ja">人と人がつながれば、社会はもっと面白くなる。</span><span data-l="en">When people connect, society gets more interesting.</span></p>
+          <p data-l="ja">企業には、企業にしかできないことがある。大学には、大学にしかできないことがある。学校、行政、地域にも、それぞれにしかできないことがあります。</p>
+          <p data-l="en">There are things only a company can do. Things only a university can do. Schools, government and local communities each have their own.</p>
+          <p data-l="ja">しかし、本当に新しいものは、その<strong>「境界」</strong>を越えたところから生まれる。築大は、その境界に立つ会社でありたい。</p>
+          <p data-l="en">But what is truly new is born beyond those <strong>boundaries</strong>. Tsukidai wants to be the company that stands on them.</p>
+          <ul class="stack">
+            <li><span data-l="ja">産と学をつなぐ。</span><span data-l="en">Connecting industry and academia.</span></li>
+            <li><span data-l="ja">官と民をつなぐ。</span><span data-l="en">Connecting public and private.</span></li>
+            <li><span data-l="ja">地域と世界をつなぐ。</span><span data-l="en">Connecting the local and the global.</span></li>
+            <li><span data-l="ja">そして、現在と未来をつなぐ。</span><span data-l="en">And connecting the present with the future.</span></li>
+          </ul>
+          <p style="margin-top:26px" data-l="ja">一つひとつの出会いから、新しい可能性を築いていきます。</p>
+          <p style="margin-top:26px" data-l="en">From each single encounter, we build a new possibility.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MESSAGE -->
+  <section id="message">
+    <div class="wrap">
+      <div class="eyebrow">MESSAGE</div>
+      <div class="grid">
+        <h2 class="sec"><span data-l="ja">代表メッセージ</span><span data-l="en">Message from the CEO</span></h2>
+        <div class="msg">
+          <figure>
+            <img src="images/hosoda.jpg" alt="代表取締役 細田 卓次郎">
+            <figcaption>
+              <span data-l="ja">株式会社 築大<br>代表取締役　細田 卓次郎</span>
+              <span data-l="en">Tsukidai Co., Ltd.<br>Takujiro Hosoda, CEO</span>
+            </figcaption>
+          </figure>
+          <div>
+            <p class="lede"><span data-l="ja">未来は、人と人が出会うところから始まります。</span><span data-l="en">The future begins where people meet.</span></p>
+            <p data-l="ja">社会には、素晴らしい知識や技術、経験、情熱を持った人が数多くいます。一方で、それぞれが違う組織や世界にいるため、出会うことなく終わってしまう可能性も少なくありません。</p>
+            <p data-l="en">Society is full of people with remarkable knowledge, skill, experience and passion. Yet because they belong to different organisations and different worlds, they often never meet at all.</p>
+            <p data-l="ja">私は、人と人が出会い、互いの考えや力を掛け合わせた瞬間に、新しい可能性が生まれると考えています。</p>
+            <p data-l="en">I believe new possibility is born the moment people meet and multiply their thinking and their strengths together.</p>
+            <p data-l="ja">宿泊、教育、スポーツ、国際交流。一見すると異なる分野ですが、私たちにとって、その中心にあるものは同じです。<strong>「人と人をつなぐこと。」</strong></p>
+            <p data-l="en">Hospitality, education, sport, international exchange. They look like different fields, but for us the centre of all of them is the same: <strong>connecting people to people.</strong></p>
+            <p data-l="ja">そして、その出会いを一過性のものにせず、新しい取り組みや社会的な価値へとつなげていく。株式会社 築大は、伝統を大切にしながら新しい挑戦を続け、人と社会の未来を築く会社を目指します。</p>
+            <p data-l="en">And rather than letting those encounters pass, we carry them forward into new initiatives and social value. Tsukidai will keep taking on new challenges while honouring tradition, and aims to be a company that builds the future of people and society.</p>
+            <div class="sig">
+              <span data-l="ja">株式会社 築大<br><span class="role">代表取締役</span>　細田 卓次郎</span>
+              <span data-l="en">Tsukidai Co., Ltd.<br><span class="role">CEO</span>　Takujiro Hosoda</span>
+            </div>
+
+            <div class="bio">
+              <span class="lab">PROFILE</span>
+              <h3><span data-l="ja">細田 卓次郎</span><span data-l="en">Takujiro Hosoda</span></h3>
+              <span class="role2"><span data-l="ja">株式会社 築大 代表取締役</span><span data-l="en">CEO, Tsukidai Co., Ltd.</span></span>
+
+              <p data-l="ja">1983年東京都生まれ。筑波大学体育専門学群卒業。在学中は水泳部競泳に所属し、競技活動を通じてスポーツが持つ人材育成と、人と人を結ぶ力を学ぶ。</p>
+              <p data-l="en">Born in Tokyo in 1983. Graduated from the School of Health and Physical Education, University of Tsukuba, where he swam competitively for the university team — and learned first-hand how sport develops people and binds them to one another.</p>
+
+              <p data-l="ja">大学卒業後、株式会社三井住友銀行に入行。金融の現場でビジネスの基礎を培うとともに、社会人となってからも競泳を続け、日本実業団水泳競技大会に三井住友銀行所属選手として出場。</p>
+              <p data-l="en">After graduating he joined Sumitomo Mitsui Banking Corporation, building his foundations in business on the front line of finance while continuing to compete, representing the bank at the Japan Corporate Swimming Championships.</p>
+
+              <p data-l="ja">その後、株式会社 築大の経営に参画し、現在は代表取締役として、宿泊事業を基盤にスポーツ・教育・国際交流・産学連携を横断した事業に取り組む。</p>
+              <p data-l="en">He later joined the management of Tsukidai, and as CEO now leads work spanning sport, education, international exchange and industry–academia collaboration, built on the company's hospitality business.</p>
+
+              <p data-l="ja">母校である筑波大学では、体育スポーツ局 プラチナアソシエイトとして活動。また、筑波大学附属駒場中学校・高等学校 水泳部監督、グローバル部／ビジネス部 社会連携ディレクターとして、スポーツ・教育を軸に、大学・企業・大使館・海外教育機関等との社会連携・国際交流活動に携わる。</p>
+              <p data-l="en">At his alma mater he serves as a Platinum Associate of the University of Tsukuba Sport and Physical Education Bureau. He is also head coach of the swimming team at the Junior and Senior High School at Komaba, University of Tsukuba, and Director of Social Collaboration for its Global and Business departments — working with universities, companies, embassies and overseas educational institutions through sport and education.</p>
+
+              <p data-l="ja">筑波大学で培った「自他共栄」の精神、金融機関で培ったビジネスの視点、そして経営の経験を掛け合わせ、「人と人、教育と社会、日本と世界をつなぐ」ことで、新たな価値を社会に「築く」ことを目指している。</p>
+              <p data-l="en">Combining the principle of <em>jita-kyoei</em> — mutual prosperity for self and others — learned at Tsukuba, the commercial perspective gained in banking, and his experience in management, he aims to build new value for society by connecting people to people, education to society, and Japan to the world.</p>
+
+              <ul class="career">
+                <li><span data-l="ja">筑波大学 体育専門学群 卒業／水泳部競泳</span><span data-l="en">School of Health and Physical Education, University of Tsukuba — university swimming team</span></li>
+                <li><span data-l="ja">株式会社三井住友銀行</span><span data-l="en">Sumitomo Mitsui Banking Corporation</span></li>
+                <li><span data-l="ja">株式会社 築大 代表取締役</span><span data-l="en">CEO, Tsukidai Co., Ltd.</span></li>
+                <li><span data-l="ja">筑波大学 体育スポーツ局 プラチナアソシエイト</span><span data-l="en">Platinum Associate, University of Tsukuba Sport and Physical Education Bureau</span></li>
+                <li><span data-l="ja">筑波大学附属駒場中学校・高等学校 水泳部監督</span><span data-l="en">Head Coach, Swimming Team, Junior and Senior High School at Komaba, University of Tsukuba</span></li>
+                <li><span data-l="ja">同校 グローバル部／ビジネス部 社会連携ディレクター</span><span data-l="en">Director of Social Collaboration, Global &amp; Business Departments, same school</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPANY -->
+  <section id="company">
+    <div class="wrap">
+      <div class="eyebrow">COMPANY</div>
+      <div class="grid">
+        <h2 class="sec"><span data-l="ja">会社概要</span><span data-l="en">Company Profile</span></h2>
+        <dl class="company">
+          <dt>NAME</dt>
+          <dd><span data-l="ja">株式会社 築大</span><span data-l="en">Tsukidai Co., Ltd.</span></dd>
+          <dt>ESTABLISHED</dt>
+          <dd><span data-l="ja">2016年10月6日</span><span data-l="en">6 October 2016</span></dd>
+          <dt>HEAD OFFICE</dt>
+          <dd><span data-l="ja">〒130-0021　東京都墨田区緑二丁目15番12号</span><span data-l="en">2-15-12 Midori, Sumida-ku, Tokyo 130-0021, Japan</span></dd>
+          <dt>CAPITAL</dt>
+          <dd><span data-l="ja">900万円</span><span data-l="en">JPY 9,000,000</span></dd>
+          <dt>REPRESENTATIVE</dt>
+          <dd><span data-l="ja">代表取締役　細田 卓次郎</span><span data-l="en">Takujiro Hosoda, CEO</span></dd>
+          <dt>BUSINESS</dt>
+          <dd>
+            <ul data-l="ja">
+              <li>宿泊施設の企画・運営</li>
+              <li>観光関連事業</li>
+              <li>教育・人材育成関連事業</li>
+              <li>スポーツ・国際交流関連事業</li>
+              <li>産学官連携・共創プロジェクトの企画・推進</li>
+            </ul>
+            <ul data-l="en">
+              <li>Planning and operation of accommodation facilities</li>
+              <li>Tourism-related business</li>
+              <li>Education and talent development</li>
+              <li>Sport and international exchange</li>
+              <li>Planning and driving industry–academia–government co-creation projects</li>
+            </ul>
+          </dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact">
+    <div class="wrap">
+      <div class="eyebrow">CONTACT</div>
+      <div class="grid">
+        <h2 class="sec"><span data-l="ja">新しい出会いから、<br>新しい未来を。</span><span data-l="en">New encounters,<br>new futures.</span></h2>
+        <div>
+          <p data-l="ja">企業、教育機関、大学、行政、スポーツ団体、地域の皆様へ。既存の枠組みにとらわれない新しい取り組みについて、ぜひご相談ください。</p>
+          <p data-l="en">To companies, schools, universities, government bodies, sporting organisations and local communities — we would welcome a conversation about work that does not fit existing frameworks.</p>
+          <p data-l="ja">ともに考え、ともに動き、ともに未来を築く。株式会社 築大は、新しい共創の可能性を探しています。</p>
+          <p data-l="en">Think together, move together, build the future together. Tsukidai is looking for the next possibility of co-creation.</p>
+          <a class="cta" href="mailto:takujirou-hosoda@tsukidai.co.jp">CONTACT US <span class="ar">→</span></a>
+          <a class="mailto" href="mailto:takujirou-hosoda@tsukidai.co.jp">takujirou-hosoda@tsukidai.co.jp</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="fm">
+      <img src="images/logo.png" alt="">
+      <span class="nm">TSUKIDAI</span>
+    </div>
+    <small>© <span id="yr">2026</span> TSUKIDAI INC. ALL RIGHTS RESERVED.</small>
+  </div>
+</footer>
+
+<div id="lb" hidden>
+  <button type="button" class="close" id="lb-close">CLOSE ×</button>
+  <img id="lb-img" src="" alt="">
+</div>
+
+<script>
+(function(){
+  var lb=document.getElementById('lb'), lbImg=document.getElementById('lb-img'), last=null;
+  function open(src,alt,src_el){last=src_el;lbImg.src=src;lbImg.alt=alt||'';lb.hidden=false;document.getElementById('lb-close').focus();}
+  function close(){lb.hidden=true;lbImg.src='';if(last)last.focus();}
+  document.querySelectorAll('.gallery button').forEach(function(b){
+    b.addEventListener('click',function(){open(b.dataset.full||b.querySelector('img').src,b.querySelector('img').alt,b);});
+  });
+  document.getElementById('lb-close').addEventListener('click',close);
+  lb.addEventListener('click',function(e){if(e.target===lb||e.target===lbImg)close();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!lb.hidden)close();});
+})();
+(function(){
+  var root=document.documentElement, ja=document.getElementById('btn-ja'), en=document.getElementById('btn-en');
+  function set(l,save){
+    if(l==='en'){root.setAttribute('data-lang','en');root.setAttribute('lang','en');}
+    else{root.removeAttribute('data-lang');root.setAttribute('lang','ja');}
+    ja.setAttribute('aria-pressed',String(l!=='en'));
+    en.setAttribute('aria-pressed',String(l==='en'));
+    if(save){try{localStorage.setItem('tsukidai-lang',l);}catch(e){}}
+  }
+  var saved=null; try{saved=localStorage.getItem('tsukidai-lang');}catch(e){}
+  set(saved==='en'?'en':'ja',false);
+  ja.addEventListener('click',function(){set('ja',true);});
+  en.addEventListener('click',function(){set('en',true);});
+  var y=document.getElementById('yr'); if(y){y.textContent=new Date().getFullYear();}
+  document.querySelectorAll('nav.main a,.brand').forEach(function(a){
+    a.addEventListener('click',function(e){
+      var id=a.getAttribute('href'); if(!id||id.charAt(0)!=='#')return;
+      var t=document.querySelector(id); if(!t)return;
+      e.preventDefault();
+      t.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth',block:'start'});
+    });
+  });
+})();
+</script>
+</body>
+</html>
