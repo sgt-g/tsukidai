@@ -172,17 +172,13 @@ strong{font-weight:700;color:var(--ink)}
 
 /* ---- hero (full-bleed, centred) ---- */
 .hero{
-  --ink:#16181c;--ink-70:#4b4f57;--gold:#9d7d18;
+  --ink:#141a28;--ink-70:#3c4250;--gold:#9a7a1c;
   position:relative;overflow:hidden;color:var(--ink);
   min-height:calc(100svh - 63px);display:flex;align-items:stretch;
   padding:clamp(48px,8vh,96px) 0 28px;
-  background:radial-gradient(ellipse 70% 60% at 50% 42%,#fffdf8 0%,#f8f4ea 55%,#efe6d3 100%);
+  background:#f6f1e6 url("images/hero-mobile.jpg") center 30%/cover no-repeat;
 }
 .hero .wrap{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;text-align:center;width:100%}
-.ribbons{position:absolute;inset:0;pointer-events:none}
-.rb{position:absolute;height:auto;filter:drop-shadow(0 6px 14px rgba(120,90,20,.18))}
-.rb-tr{top:0;right:0;width:clamp(240px,46vw,720px)}
-.rb-bl{bottom:0;left:0;width:clamp(240px,46vw,720px)}
 .hero .crest{width:clamp(96px,13vw,150px);filter:drop-shadow(0 4px 10px rgba(120,90,20,.22))}
 .wordmark{font-family:"Marcellus",serif;font-size:clamp(30px,4.6vw,50px);letter-spacing:.28em;padding-left:.28em;margin-top:18px;line-height:1.2;color:var(--ink)}
 .vline{display:block;width:1px;height:clamp(34px,6vh,58px);background:var(--gold);margin:22px auto 26px}
@@ -195,8 +191,9 @@ strong{font-weight:700;color:var(--ink)}
 .scroll .sl{width:1px;height:48px;background:var(--gold)}
 .scroll svg{width:14px;color:var(--gold);animation:bob 2s ease-in-out infinite}
 @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(4px)}}
-@media(max-width:600px){.hero p{font-size:14px;padding:0 6px}.rb{width:80vw}.rb-bl{width:72vw}}
+@media(max-width:600px){.hero p{font-size:14px;padding:0 6px}}
 .hero p,.hero h1,.lede,p{word-break:auto-phrase}
+@media(min-width:901px){.hero{background:#f9f5ec url("images/hero-desktop.jpg") center/100% 100% no-repeat}}
 section[id]{scroll-margin-top:62px}
 /* ---- burger + drawer ---- */
 .burger{display:none;background:none;border:0;padding:8px 2px 8px 6px;cursor:pointer;color:var(--ink)}
@@ -462,34 +459,6 @@ footer.site small{font-family:"Marcellus",serif;letter-spacing:.12em;font-size:1
 
   <!-- HERO -->
   <section class="hero">
-    <div class="ribbons" aria-hidden="true">
-      <svg class="rb rb-tr" viewBox="0 0 400 520" preserveAspectRatio="xMaxYMin meet">
-        <defs>
-          <linearGradient id="gA" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stop-color="#7a5a12"/><stop offset=".22" stop-color="#d9b75e"/><stop offset=".4" stop-color="#f6e7b4"/>
-            <stop offset=".58" stop-color="#b48b2c"/><stop offset=".8" stop-color="#ecd28a"/><stop offset="1" stop-color="#8d6a1a"/>
-          </linearGradient>
-          <linearGradient id="gB" x1="1" y1="0" x2="0" y2="1">
-            <stop offset="0" stop-color="#a47d22"/><stop offset=".35" stop-color="#f3dfa0"/><stop offset=".6" stop-color="#c49b3e"/><stop offset="1" stop-color="#e8cf8c"/>
-          </linearGradient>
-          <linearGradient id="sW" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".85"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>
-          </linearGradient>
-        </defs>
-        <path d="M120 -10 C220 120 300 250 410 330 L410 372 C285 290 200 150 92 -10 Z" fill="url(#sW)" opacity=".7"/>
-        <path d="M205 -10 C270 130 330 250 410 318 L410 362 C318 290 252 160 176 -10 Z" fill="url(#gA)"/>
-        <path d="M176 -10 C252 160 318 290 410 362" fill="none" stroke="#fff6d8" stroke-width="1.2" opacity=".9"/>
-        <path d="M282 -10 C318 70 360 130 410 168 L410 190 C352 148 308 84 266 -10 Z" fill="url(#gB)"/>
-        <path d="M330 -10 C356 40 382 72 410 92 L410 104 C378 82 350 46 320 -10 Z" fill="url(#gA)" opacity=".85"/>
-      </svg>
-      <svg class="rb rb-bl" viewBox="0 0 400 520" preserveAspectRatio="xMinYMax meet">
-        <path d="M-10 120 C110 210 210 340 300 530 L250 530 C170 360 80 240 -10 168 Z" fill="url(#sW)" opacity=".75"/>
-        <path d="M-10 214 C96 290 172 400 236 530 L184 530 C126 412 56 318 -10 266 Z" fill="url(#gA)"/>
-        <path d="M-10 266 C56 318 126 412 184 530" fill="none" stroke="#fff6d8" stroke-width="1.2" opacity=".9"/>
-        <path d="M-10 352 C52 396 96 452 124 530 L100 530 C72 462 34 414 -10 382 Z" fill="url(#gB)"/>
-        <path d="M-10 470 C120 452 260 470 410 530 L410 530 L-10 530 Z" fill="url(#gB)" opacity=".55"/>
-      </svg>
-    </div>
     <div class="wrap">
       <img class="crest" src="images/logo.png" alt="">
       <div class="wordmark">TSUKIDAI</div>
